@@ -1,10 +1,24 @@
-This script will obtain a ssl certificate from
+This repo holds a couple scripts to help get codeup students setup with a ssl
+certificate for their sites, and setup their development environment to be able
+to test their sites with an encrypted connection.
+
+The `ssl-helper.sh` script will obtain a ssl certificate from
 [letsencrypt](https://letsencrypt.org/) by means of the
 [certbot](https://certbot.eff.org/) tool for sites that are setup with
 [warpspeed](https://warpspeed.io/).
 
+The `ssl-in-dev.sh` script will setup a site on the [codeup vagrant
+box](https://github.com/gocodeup/Codeup-Vagrant-Setup) with a self signed ssl
+certificate for testing.
+
 The `walkthrough.md` file contains a rough draft of how to perform all the steps
-that the script does by hand.
+that the script does by hand. This file is essentially my notes that the
+`ssl-helper.sh` script is based off.
+
+- [Installing in Production](#installing-a-ssl-certificate-in-production)
+- [Installing in Development](#setting-up-ssl-in-development)
+
+# Installing a SSL Certificate in Production
 
 ## Caveats
 
@@ -67,3 +81,33 @@ warpspeed site:create <type> <your-site> --force
 
 Where `<type>` is the type of site it was setup as (e.g. php) and `<your-site>`
 is the name of your site (e.g. example.com). 
+
+# Setting up SSL in Development
+
+1. Download the `ssl-in-dev.sh` script onto your vagrant machine
+
+    ```
+    curl https://raw.githubusercontent.com/zgulde/ssl-helper/master/ssl-in-dev.sh > ssl-in-dev.sh
+    ```
+
+2. Run it and pass the name of the site you want to setup a certificate for as a
+   command line argument
+
+    ```
+    bash ssl-in-dev.sh codeup.dev
+    ```
+
+After this process is finished you will have a self-signed certificate setup for
+your `.dev`.
+
+When you visit the `.dev` in the browser you will still be able to access it via
+http, but can also test it by visiting the https version.
+
+```
+https://codeup.dev
+```
+
+Note that the first time you visit the site, your browser should give you an
+error message about a untrusted certificate. This is expected because our
+certificate is not verified by an external certificate authority, Go ahead and
+click through and continue to the site.
