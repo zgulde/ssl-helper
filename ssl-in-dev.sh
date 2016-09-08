@@ -1,5 +1,6 @@
-# this script will fake ssl for a development machine using a self-signed
+# this script will 'fake' ssl for a development machine using a self-signed
 # certificate. 
+# This should be run on the development server you want to setup
 # this script was built to work with the codeup vagrant box setup,
 # but the general principles will apply to any setup
 
@@ -28,7 +29,7 @@ if grep 'listen 443 ssl' /etc/nginx/sites-available/$site > /dev/null; then
 fi
 
 # create a folder for ssl certs if its not there already
-mkdir -p /etc/nginx/ssl/$site
+sudo mkdir -p /etc/nginx/ssl/$site
 
 # create a private key
 sudo openssl genrsa -out /etc/nginx/ssl/$site/$site.key
