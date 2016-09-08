@@ -32,19 +32,19 @@ fi
 sudo mkdir -p /etc/nginx/ssl/$site
 
 # create a private key
-sudo openssl genrsa -out /etc/nginx/ssl/$site/$site.key
+sudo openssl genrsa -out /etc/nginx/ssl/$site/$site.key > /dev/null
 
 # generate csr without being prompted for input
 sudo openssl req -new \
     -key /etc/nginx/ssl/$site/$site.key \
     -out /etc/nginx/ssl/$site/$site.csr \
-    -subj "/C=US/ST=Texas/L=SA/O=Codeup/OU=IT Department/CN=$site"
+    -subj "/C=US/ST=Texas/L=SA/O=Codeup/OU=IT Department/CN=$site" > /dev/null
 
 # sign the certificate
 sudo openssl x509 -req -days 365 \
     -in /etc/nginx/ssl/$site/$site.csr \
     -signkey /etc/nginx/ssl/$site/$site.key \
-    -out /etc/nginx/ssl/$site/$site.crt
+    -out /etc/nginx/ssl/$site/$site.crt > /dev/null
 
 # modify the nginx config
 # append the relevent ssl directives after the server name
@@ -54,8 +54,7 @@ cat /etc/nginx/sites-available/$site |\
   listen 443 ssl;
 
   ssl_certificate     \/etc\/nginx\/ssl\/'$site\\/$site'.crt;
-  ssl_certificate_key \/etc\/nginx\/ssl\/'$site\\/$site'.key;
-/' |\
+  ssl_certificate_key \/etc\/nginx\/ssl\/'$site\\/$site'.key;/' |\
     sudo tee /etc/nginx/sites-available/$site > /dev/null
 
 # for some reason a restart wasn't doing it, so we'll be explicit here
