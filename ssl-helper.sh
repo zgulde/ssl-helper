@@ -35,7 +35,8 @@ wait-to-continue(){
 # will add an entry to the nginx config file for $1 to allow acces to
 # /.well-known
 # the perl regex relies on the nginx config file being the one that is setup by
-# warpspeed
+# warpspeed. Basically it looks for the entry in the file that disallows access
+# to all hidden folders and appends the entry for certbot above that line
 edit-nginx-conf(){
     cat /etc/nginx/sites-available/$1 |\
     perl -pe 's/.*deny all.*/    location ~ \/.well-known { allow all; }\n$&/' |\
