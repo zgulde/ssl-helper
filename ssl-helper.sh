@@ -9,9 +9,11 @@
 # it will also edit the relevant nginx configuration to allow certbot-auto
 # to do its thing.
 
+# TODO: check to see if certbot-auto is already installed before we try to
+#       download it
+# TODO: cerbot-auto should probably be placed somwhere in the PATH instead of
+#       the home directory
 # TODO: make this word for a different webroot
-# TODO: make this work for a different certbot-auto installation location
-#       we should probably check if its in the PATH
 
 # download certbot, store it in the home directory, and make it executable
 install-certbot(){
@@ -27,7 +29,8 @@ install-certbot(){
 wait-to-continue(){
     echo
     echo
-    echo -e '\nPress Enter to continue or Ctrl-C to exit'
+    echo
+    echo 'Press Enter to continue or Ctrl-C to exit'
     read
     echo 
 }
@@ -50,7 +53,7 @@ echo 'going to use to obtain a certificate has been known to crash if the'
 echo 'terminal window it is run in is not big enough.'
 echo
 echo 'We will require admin privileges in order to edit the nginx configuration'
-echo 'for the site and to run the certbot-auto tool.'
+echo 'for the site, reload nginx, and to run the certbot-auto tool.'
 
 wait-to-continue
 
@@ -75,7 +78,7 @@ if [[ ! -e "/etc/nginx/sites-available/$site" ]]; then
 fi
 
 # check if we already edited the nginx config for this site, if not
-# make sure certbot is able to access what it needs to access
+# go ahead and make the neccessary changes
 if ! grep '/\.well-known' /etc/nginx/sites-available/$site > /dev/null; then
     echo 'We are going to need to edit the nginx config to allow ourselves to'
     echo 'prove that we own the site.'
@@ -100,6 +103,8 @@ echo 'to agree to their TOS.'
 
 wait-to-continue
 
+# invoke certbot auto and pass it the webroot and domain name from the command
+# line so we don't have to spend time in their installer
 $HOME/certbot-auto certonly -a webroot --webroot-path=/home/warpspeed/sites/$site/public -d $site
 
 # check if certbot worked...
