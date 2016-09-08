@@ -13,7 +13,7 @@
 #       download it
 # TODO: cerbot-auto should probably be placed somwhere in the PATH instead of
 #       the home directory
-# TODO: make this word for a different webroot
+# TODO: make this work for a different webroot
 
 # download certbot, store it in the home directory, and make it executable
 install-certbot(){
