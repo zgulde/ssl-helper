@@ -12,6 +12,8 @@ that the script does by hand.
   message about how your site is insecure.
 - Letsencrypt certificates expire every 90 days, so you will have to renew your
   certificate.
+- If you edited your nginx configuration for the site, it might break this
+  script, see [the source for more details](https://github.com/zgulde/ssl-helper/blob/master/ssl-helper.sh#L35)
 
 ## Prerequisites 
 
