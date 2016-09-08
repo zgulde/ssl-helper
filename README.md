@@ -3,6 +3,9 @@ This script will obtain a ssl certificate from
 [certbot](https://certbot.eff.org/) tool for sites that are setup with
 [warpspeed](https://warpspeed.io/).
 
+The `walkthrough.md` file contains a rough draft of how to perform all the steps
+that the script does by hand.
+
 ## Prerequisites 
 
 1. a digital ocean server setup with warpspeed
