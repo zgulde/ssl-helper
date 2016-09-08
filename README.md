@@ -6,6 +6,13 @@ This script will obtain a ssl certificate from
 The `walkthrough.md` file contains a rough draft of how to perform all the steps
 that the script does by hand.
 
+## Caveats
+
+- If ssl is improperly configured, visitors to your site will see a nasty error
+  message about how your site is insecure.
+- Letsencrypt certificates expire every 90 days, so you will have to renew your
+  certificate.
+
 ## Prerequisites 
 
 1. a digital ocean server setup with warpspeed
