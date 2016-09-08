@@ -32,19 +32,19 @@ fi
 sudo mkdir -p /etc/nginx/ssl/$site
 
 # create a private key
-sudo openssl genrsa -out /etc/nginx/ssl/$site/$site.key > /dev/null
+sudo openssl genrsa -out /etc/nginx/ssl/$site/$site.key > /dev/null 2>&1
 
 # generate csr without being prompted for input
 sudo openssl req -new \
     -key /etc/nginx/ssl/$site/$site.key \
     -out /etc/nginx/ssl/$site/$site.csr \
-    -subj "/C=US/ST=Texas/L=SA/O=Codeup/OU=IT Department/CN=$site" > /dev/null
+    -subj "/C=US/ST=Texas/L=SA/O=Codeup/OU=IT Department/CN=$site" > /dev/null 2>&1
 
 # sign the certificate
 sudo openssl x509 -req -days 365 \
     -in /etc/nginx/ssl/$site/$site.csr \
     -signkey /etc/nginx/ssl/$site/$site.key \
-    -out /etc/nginx/ssl/$site/$site.crt > /dev/null
+    -out /etc/nginx/ssl/$site/$site.crt > /dev/null 2>&1
 
 # modify the nginx config
 # append the relevent ssl directives after the server name
