@@ -1,3 +1,7 @@
+**This document is a rough outline of what the `ssl-helper.sh` script is doing
+behind the scenes. If you want to go through the process manually, feel free to
+follow along here, otherwise follow along with the main README**
+
 ## prerequisites
 
 1. a digital ocean server setup with warpspeed
