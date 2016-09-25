@@ -11,7 +11,7 @@ The `ssl-in-dev.sh` script will setup a site on the [codeup vagrant
 box](https://github.com/gocodeup/Codeup-Vagrant-Setup) with a self signed ssl
 certificate for testing.
 
-The `walkthrough.md` file contains a rough draft of how to perform all the steps
+The `notes.md` file contains a rough draft of how to perform all the steps
 that the script does by hand. This file is essentially my notes that the
 `ssl-helper.sh` script is based off.
 
