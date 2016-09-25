@@ -17,6 +17,7 @@ that the script does by hand. This file is essentially my notes that the
 
 - [Installing in Production](#installing-a-ssl-certificate-in-production)
 - [Installing in Development](#setting-up-ssl-in-development)
+- [Renewing Existing Certificates](#renewing-existing-certificates)
 
 # Installing a SSL Certificate in Production
 
@@ -111,3 +112,26 @@ Note that the first time you visit the site, your browser should give you an
 error message about a untrusted certificate. This is expected because our
 certificate is not verified by an external certificate authority, Go ahead and
 click through and continue to the site.
+
+# Renewing Existing Certificates
+
+If you've already have a certificate installed you will need to renew it every
+90 days. Luckily this process is pretty much the same as the initial setup.
+
+1. Log into your server and run the `ssl-helper.sh` script again.
+
+    ```bash
+    bash ssl-helper.sh
+    ```
+
+1. Follow the prompts and input your site name.
+
+1. When the script runs `certbot-auto` it will go ahead and renew the existing
+   certificate.
+
+1. Once we have a new certificate, follow along like normal and install it
+   through the warpspeed web interface.
+
+**Note that just obtaining a fresh certificate is not enough, you will need to
+follow through with installing it through the warpspeed web interface, otherwise
+your server will still be using the old certificate.**
