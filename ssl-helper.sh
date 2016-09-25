@@ -105,7 +105,7 @@ wait-to-continue
 
 # invoke certbot auto and pass it the webroot and domain name from the command
 # line so we don't have to spend time in their installer
-$HOME/certbot-auto certonly -a webroot --webroot-path=/home/warpspeed/sites/$site/public -d $site
+$HOME/certbot-auto certonly -a webroot --webroot-path=/home/warpspeed/sites/$site/public -d $site --renew-by-default
 
 # check if certbot worked...
 if [[ $? != 0 ]]; then
