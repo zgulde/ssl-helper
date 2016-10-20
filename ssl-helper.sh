@@ -137,7 +137,8 @@ sudo cat /etc/letsencrypt/live/$site/fullchain.pem
 
 wait-to-continue
 
-echo 'Now copy and paste the following for your Private Key:'
+echo 'As soon as you hit "enter" your private key will be displayed.'
+echo 'Go ahead and copy and paste it into warpspeed as well'
 
 wait-to-continue
 
@@ -160,4 +161,3 @@ sudo service nginx restart
 
 echo
 echo "All Done! You can now go visit https://$site"
-
