@@ -17,13 +17,8 @@
 
 # download certbot, store it in the home directory, and make it executable
 install-certbot(){
-    echo 'It looks like we havent downloaded certbot-auto (or it is not in the'
-    echo 'home directory). Lets go ahead and download it now.'
     curl -sS https://dl.eff.org/certbot-auto > $HOME/certbot-auto
     chmod +x $HOME/certbot-auto
-    echo 
-    echo 'certbot-auto installed!'
-    echo
 }
 
 wait-to-continue(){
@@ -92,7 +87,12 @@ fi
 
 # install cerbot-auto if it isn't already
 if [[ ! -e $HOME/certbot-auto ]]; then
+    echo 'It looks like we havent downloaded certbot-auto (or it is not in the'
+    echo 'home directory). Lets go ahead and download it now.'
     install-certbot
+    echo 
+    echo 'certbot-auto installed!'
+    echo
 fi
 
 echo
